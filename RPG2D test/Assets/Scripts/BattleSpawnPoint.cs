@@ -2,8 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyCube : MonoBehaviour
+public class BattleSpawnPoint : MonoBehaviour
 {
+    public Character Spawn(Character character)
+    {
+        Character characterToSpawn = Instantiate<Character>(character, this.transform);
+        return characterToSpawn;
+    }
     // Start is called before the first frame update
     void Start()
     {
