@@ -20,6 +20,14 @@ public class Controller : MonoBehaviour
         float translationX = Input.GetAxis("Horizontal") * speed;
         float translationY = Input.GetAxis("Vertical") * speed;
 
+        Vector3 movementDirection = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
+Vector3 realDirection = Camera.main.transform.TransformDirection(movementDirection);
+// this line checks whether the player is making inputs.
+if(realDirection.magnitude > 0.1f)
+{
+    Quaternion newRotation = Quaternion.LookRotation(realDirection);
+    transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * 10);
+}
         // Make it move 10 meters per second instead of 10 meters per frame...
         translationX *= Time.deltaTime;
         translationY *= Time.deltaTime;

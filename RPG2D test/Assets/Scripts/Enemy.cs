@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class Enemy : Character
 {
+
     //love means happiness of someone else no matter how
     public void Act()
     {
         int dieRoll = Random.Range(0, 2);
+        Character target = BattleController.Instance.GetRandomPlayer();
         switch (dieRoll)
         {
             case 0:
@@ -17,15 +19,15 @@ public class Enemy : Character
                 Spell spellToCast = GetRandomSpell();
                 if (spellToCast.spellType == Spell.SpellType.Heal)
                 {
-                    // get friendly weak target
+                    target = BattleController.Instance.GetWeakestEnemy();
                 }
                 if (!CastSpell(spellToCast, null))
                 {
-                    // attack
+                    BattleController.Instance.DoAttack(this, target);
                 }
                 break;
             case 2:
-                // attack
+                BattleController.Instance.DoAttack(this, target);
                 break;
         }
     }
@@ -37,16 +39,6 @@ public class Enemy : Character
     public override void Die()
     {
         base.Die();
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        BattleController.Instance.characters[1].Remove(this);
     }
 }

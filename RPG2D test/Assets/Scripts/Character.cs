@@ -53,15 +53,4 @@ public class Character : MonoBehaviour
         Destroy(this.gameObject);
         Debug.LogFormat("{0} has died", characterName);
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 }

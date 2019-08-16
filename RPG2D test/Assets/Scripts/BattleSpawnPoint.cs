@@ -9,15 +9,5 @@ public class BattleSpawnPoint : MonoBehaviour
         Character characterToSpawn = Instantiate<Character>(character, this.transform);
         return characterToSpawn;
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
